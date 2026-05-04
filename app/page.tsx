@@ -1,711 +1,383 @@
-"use client"
-
-// import {
-//   CheckCircle2,
-//   Download,
-//   Headphones,
-//   ShieldCheck,
-//   ShoppingBag,
-//   Smartphone,
-//   Star,
-//   X,
-//   Zap
-// } from 'lucide-react';
-// import React, { useEffect, useState } from 'react';
-
-// // --- Official Branding Icons (SVG) ---
-// const AppStoreIcon = () => (
-//   <svg className="w-6 h-6" viewBox="0 0 384 512" fill="currentColor">
-//     <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
-//   </svg>
-// );
-
-// const PlayStoreIcon = () => (
-//   <svg className="w-6 h-6" viewBox="0 0 512 512" fill="currentColor">
-//     <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
-//   </svg>
-// );
-
-// /**
-//  * Dodo Food - Landing Page (Next.js 15 + Tailwind CSS v4)
-//  * Max-width: 1440px
-//  */
-// export default function App() {
-//   const [isScrolled, setIsScrolled] = useState(false);
-//   const [showPlaceholder, setShowPlaceholder] = useState<null | 'apple' | 'google'>(null);
-
-//   useEffect(() => {
-//     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-//     window.addEventListener('scroll', handleScroll);
-//     return () => window.removeEventListener('scroll', handleScroll);
-//   }, []);
-
-//   const handleDownloadClick = (e: React.MouseEvent, type: 'apple' | 'google') => {
-//     e.preventDefault();
-//     setShowPlaceholder(type);
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-[#FDFCFB] text-slate-900 selection:bg-orange-100 font-sans">
-
-//       {/* --- MOCK STORE MODAL --- */}
-//       {showPlaceholder && (
-//         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
-//           <div className="bg-white w-full max-w-md rounded-[2.5rem] overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
-//             <div className="p-8 text-center space-y-6">
-//               <div className="flex justify-end">
-//                 <button onClick={() => setShowPlaceholder(null)} className="p-2 hover:bg-slate-100 rounded-full transition">
-//                   <X className="w-6 h-6 text-slate-400" />
-//                 </button>
-//               </div>
-//               <div className="flex justify-center">
-//                 <div className="w-20 h-20 bg-orange-500 rounded-2xl flex items-center justify-center shadow-xl shadow-orange-500/20">
-//                   <ShoppingBag className="text-white w-10 h-10" />
-//                 </div>
-//               </div>
-//               <div className="space-y-2">
-//                 <h3 className="text-2xl font-black">Dodo Food App</h3>
-//                 <p className="text-slate-500 font-medium">Redirecting you to the {showPlaceholder === 'apple' ? 'App Store' : 'Google Play Store'}...</p>
-//               </div>
-//               <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex items-center justify-between">
-//                 <div className="flex items-center gap-3">
-//                   <CheckCircle2 className="text-green-500 w-5 h-5" />
-//                   <span className="text-sm font-bold text-slate-700">Verified by {showPlaceholder === 'apple' ? 'Apple' : 'Google'}</span>
-//                 </div>
-//                 <div className="text-xs font-black text-slate-400 uppercase tracking-widest">v4.2.0</div>
-//               </div>
-//               <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-//                 <div className="h-full bg-orange-500 animate-[progress_2s_ease-in-out_infinite]" style={{ width: '60%' }}></div>
-//               </div>
-//               <p className="text-xs font-bold text-slate-400">Placeholder: Official store page would load here.</p>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-
-//       {/* --- HEADER --- */}
-//       <nav className="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-4 pt-4">
-//         <div className={`mx-auto max-w-[1440px] flex items-center justify-between px-6 py-3 rounded-full transition-all duration-300 ${isScrolled
-//             ? 'bg-white/80 backdrop-blur-xl shadow-lg border border-white/20'
-//             : 'bg-transparent'
-//           }`}>
-//           <Link href="/" className="flex items-center gap-2">
-//             <div className="h-10 w-10 bg-orange-500 rounded-xl flex items-center justify-center shadow-orange-500/20 shadow-lg">
-//               <ShoppingBag className="text-white w-6 h-6" />
-//             </div>
-//             <span className="text-xl font-black tracking-tighter text-slate-900 uppercase">Dodo<span className="text-orange-500">Food</span></span>
-//           </Link>
-
-//           <div className="flex items-center gap-4 md:gap-8">
-//             <Link href="#" className="hidden md:block text-sm font-bold text-slate-600 hover:text-orange-500 transition">
-//               Join as a Partner
-//             </Link>
-//             <button
-//               onClick={() => setShowPlaceholder('apple')}
-//               className="bg-slate-900 text-white px-5 py-2.5 md:px-7 md:py-3 rounded-full text-xs md:text-sm font-bold shadow-xl hover:bg-orange-600 hover:scale-105 transition active:scale-95 flex items-center gap-2"
-//             >
-//               <Smartphone className="w-4 h-4" />
-//               Get App
-//             </button>
-//           </div>
-//         </div>
-//       </nav>
-
-//       <main className="mx-auto max-w-[1440px] relative">
-//         {/* --- HERO SECTION --- */}
-//         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden px-6 lg:px-12">
-//           <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-orange-100 rounded-full blur-[120px] opacity-60 -mr-20 -mt-20 animate-pulse" />
-
-//           <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-//             <div className="space-y-8">
-//               <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-100 px-4 py-2 rounded-full">
-//                 <Zap className="w-4 h-4 text-orange-500 fill-orange-500" />
-//                 <span className="text-[10px] md:text-xs font-black uppercase tracking-wider text-orange-700">Experience our new app</span>
-//               </div>
-
-//               <h1 className="text-5xl md:text-7xl lg:text-8xl font-[900] leading-[0.95] tracking-tight text-slate-900">
-//                 Great Food <br />
-//                 <span className="text-orange-500 relative inline-block">
-//                   In Your Pocket
-//                   <svg className="absolute -bottom-2 left-0 w-full h-3 text-orange-200" viewBox="0 0 100 10" preserveAspectRatio="none">
-//                     <path d="M0 5 Q 25 0 50 5 Q 75 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-//                   </svg>
-//                 </span>
-//               </h1>
-
-//               <p className="max-w-md text-base md:text-lg text-slate-500 leading-relaxed font-medium">
-//                 Dodo Food is now exclusively available on mobile. Experience real-time tracking, zero delivery fees, and the easiest way to order.
-//               </p>
-
-//               {/* Download Buttons with Brand Icons */}
-//               <div className="flex flex-wrap gap-4 pt-4">
-//                 <button
-//                   onClick={(e) => handleDownloadClick(e, 'apple')}
-//                   className="flex items-center gap-4 bg-slate-900 text-white px-8 py-4 rounded-[1.25rem] hover:scale-105 transition-all shadow-xl shadow-slate-200 group"
-//                 >
-//                   <LinkppStoreIcon />
-//                   <div className="text-left leading-none">
-//                     <p className="text-[10px] opacity-60 font-bold uppercase tracking-wider">Download on the</p>
-//                     <p className="text-lg font-black tracking-tight">App Store</p>
-//                   </div>
-//                 </button>
-//                 <button
-//                   onClick={(e) => handleDownloadClick(e, 'google')}
-//                   className="flex items-center gap-4 bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-[1.25rem] hover:scale-105 transition-all shadow-lg group"
-//                 >
-//                   <PlayStoreIcon />
-//                   <div className="text-left leading-none">
-//                     <p className="text-[10px] opacity-60 font-bold uppercase tracking-wider">Get it on</p>
-//                     <p className="text-lg font-black tracking-tight">Google Play</p>
-//                   </div>
-//                 </button>
-//               </div>
-
-//               <div className="flex items-center gap-8 pt-4">
-//                 <div className="flex -space-x-3">
-//                   {[1, 2, 3, 4].map(i => (
-//                     <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-slate-200 relative">
-//                       <img src={`https://i.pravatar.cc/150?img=${i + 10}`} alt="User" className="w-full h-full object-cover" />
-//                     </div>
-//                   ))}
-//                 </div>
-//                 <div className="text-sm">
-//                   <div className="flex items-center gap-1 text-slate-900">
-//                     <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-//                     <span className="font-black">4.9/5 Rating</span>
-//                   </div>
-//                   <p className="text-slate-500 font-medium">Join 50k+ app users</p>
-//                 </div>
-//               </div>
-//             </div>
-
-//             {/* Visual Hero Image Grid */}
-//             <div className="relative hidden lg:block">
-//               <div className="grid grid-cols-2 gap-4">
-//                 <div className="space-y-4 pt-12">
-//                   <div className="rounded-3xl overflow-hidden shadow-2xl rotate-[-2deg] border-4 border-white transition-transform hover:rotate-0 duration-500">
-//                     <img
-//                       src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=400"
-//                       alt="Burger"
-//                       className="w-full h-auto object-cover"
-//                     />
-//                   </div>
-//                   <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-50 flex items-center gap-4">
-//                     <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">
-//                       <Download className="w-6 h-6" />
-//                     </div>
-//                     <div>
-//                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Mobile First</p>
-//                       <p className="text-lg font-black text-slate-900">Best UX</p>
-//                     </div>
-//                   </div>
-//                 </div>
-//                 <div className="space-y-4">
-//                   <div className="bg-slate-900 p-6 rounded-3xl shadow-xl text-white">
-//                     <Zap className="w-8 h-8 text-orange-400 mb-4" />
-//                     <p className="font-bold text-lg leading-tight mb-1">Tap, Track, Eat.</p>
-//                     <p className="text-sm text-slate-400">Order in under 60 seconds.</p>
-//                   </div>
-//                   <div className="rounded-3xl overflow-hidden shadow-2xl rotate-[2deg] border-4 border-white transition-transform hover:rotate-0 duration-500">
-//                     <img
-//                       src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400"
-//                       alt="Salad"
-//                       className="w-full h-auto object-cover"
-//                     />
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* --- APP FEATURES SECTION --- */}
-//         <section className="py-24 px-6 lg:px-12 bg-white/50">
-//           <div className="mb-12 text-center md:text-left">
-//             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">
-//               Why the <span className="text-orange-500">Dodo App?</span>
-//             </h2>
-//           </div>
-
-//           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//             <div className="md:col-span-2 relative overflow-hidden rounded-[2.5rem] bg-orange-500 p-10 md:p-14 text-white group">
-//               <Zap className="w-12 h-12 mb-6 text-orange-200" />
-//               <h3 className="text-3xl md:text-4xl font-black mb-4">Lightning-Fast Experience</h3>
-//               <p className="text-orange-50 text-lg font-medium leading-relaxed max-w-lg">
-//                 Native app performance means zero lag. Browse thousands of restaurants smoothly.
-//               </p>
-//             </div>
-
-//             <div className="bg-slate-900 rounded-[2.5rem] p-10 text-white flex flex-col justify-between">
-//               <Smartphone className="w-10 h-10 text-orange-500 mb-6" />
-//               <div>
-//                 <h3 className="text-2xl font-black mb-3">Live Tracking</h3>
-//                 <p className="text-slate-400 font-medium">Watch your food journey on a high-precision map.</p>
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* --- DOWNLOAD CTA SECTION --- */}
-//         <section id="download-section" className="<Link py-24 px-6 scroll-mt-24">
-//           <div className="bg-slate-900 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden">
-//             <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-orange-500 rounded-full blur-[120px] opacity-20" />
-
-//             <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-//               <div className="space-y-8 text-center lg:text-left">
-//                 <h2 className="text-5xl md:text-6xl font-black text-white leading-tight">
-//                   Start eating <br /> better today.
-//                 </h2>
-//                 <p className="text-slate-400 text-lg font-medium leading-relaxed max-w-sm mx-auto lg:mx-0">
-//                   Download Dodo Food now and get free delivery on your first three orders.
-//                 </p>
-//                 <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-//                   <button
-//                     onClick={(e) => handleDownloadClick(e, 'apple')}
-//                     className="bg-white text-slate-900 px-8 py-4 rounded-2xl font-black hover:bg-orange-500 hover:text-white transition shadow-xl flex items-center gap-3"
-//                   >
-//                     <LinkppStoreIcon /> App Store
-//                   </button>
-//                   <button
-//                     onClick={(e) => handleDownloadClick(e, 'google')}
-//                     className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-2xl font-black hover:bg-white/20 transition flex items-center gap-3"
-//                   >
-//                     <PlayStoreIcon /> Google Play
-//                   </button>
-//                 </div>
-//               </div>
-
-//               <div className="flex justify-center relative">
-//                 {/* Mobile Mockup */}
-//                 <div className="w-64 h-[500px] bg-slate-800 rounded-[3.5rem] border-[10px] border-slate-700 shadow-2xl relative overflow-hidden group">
-//                   <div className="h-6 w-1/3 bg-slate-700 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-20" />
-//                   <div className="p-6 pt-16 space-y-6">
-//                     <div className="h-40 w-full bg-orange-500 rounded-2xl animate-pulse" />
-//                     <div className="h-4 w-3/4 bg-slate-700 rounded" />
-//                     <div className="h-4 w-1/2 bg-slate-700 rounded" />
-//                   </div>
-//                   <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-orange-500 p-4 rounded-full shadow-2xl shadow-orange-500/50">
-//                     <ShoppingBag className="w-6 h-6 text-white" />
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-//       </main>
-
-//       {/* --- FOOTER --- */}
-//       <footer className="bg-white py-12 border-t border-slate-50 px-6 lg:px-12">
-//         <div className="mx-auto max-w-[1440px] flex flex-col md:flex-row justify-between items-center gap-8">
-//           <div className="flex items-center gap-2">
-//             <div className="h-8 w-8 bg-orange-500 rounded-lg flex items-center justify-center">
-//               <ShoppingBag className="text-white w-5 h-5" />
-//             </div>
-//             <span className="text-xl font-black tracking-tighter text-slate-900 uppercase">Dodo<span className="text-orange-500">Food</span></span>
-//           </div>
-
-//           <div className="flex flex-wrap justify-center items-center gap-8 text-sm font-bold text-slate-500">
-//             <Link href="#" className="flex items-center gap-2 hover:text-orange-500 transition">
-//               <Headphones className="w-4 h-4" />
-//               Contact Us
-//             </Link>
-//             <Link href="#" className="flex items-center gap-2 hover:text-orange-500 transition">
-//               <ShieldCheck className="w-4 h-4" />
-//               Privacy Policy
-//             </Link>
-//           </div>
-
-//           <div className="text-slate-400 font-medium text-xs">
-//             © 2026 Dodo Food. Representing the Mobile Experience.
-//           </div>
-//         </div>
-//       </footer>
-//     </div>
-//   );
-// }
-
-
-
-
-
-
+"use client";
 
 import {
-  Download,
-  Headphones,
-  ShieldCheck,
-  ShoppingBag,
-  Smartphone,
-  Star,
-  Zap
+    Flame,
+    Mail,
+    MousePointer2,
+    Pizza,
+    ShieldCheck,
+    ShoppingBag,
+    Smartphone,
+    Timer,
+    Utensils,
+    Zap
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { type MouseEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // --- Official Branding Icons (SVG) ---
-const AppStoreIcon = () => (
-  <svg className="w-6 h-6" viewBox="0 0 384 512" fill="currentColor">
-    <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
-  </svg>
+const AppStoreIcon = ({ className = "w-5 h-5" }) => (
+    <svg className={className} viewBox="0 0 384 512" fill="currentColor">
+        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+    </svg>
 );
 
-const PlayStoreIcon = () => (
-  <svg className="w-6 h-6" viewBox="0 0 512 512" fill="currentColor">
-    <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
-  </svg>
+const PlayStoreIcon = ({ className = "w-5 h-5" }) => (
+    <svg className={className} viewBox="0 0 512 512" fill="currentColor">
+        <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
+    </svg>
 );
 
 /**
- * Dodo Food - Landing Page (Next.js 15 + Tailwind CSS v4)
- * Header updated to matching pill-style design.
+ * QUICK DELIVERY - NEXT.JS 16 & TAILWIND V4 REDESIGN
+ * Reimagined Download Section with smooth scroll and brand alignment.
+ * Swapped Next components for standard HTML tags for preview compatibility.
  */
-export default function App() {
-  const [isScrolled, setIsScrolled] = useState(false);
+export default function Home() {
+    const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 20);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-  const scrollToDownload = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const element = document.getElementById('download-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+    const storeUrl = "https://play.google.com/store/apps/details?id=com.quickdeliveruser.app";
 
-  return (
-    <div className="min-h-screen bg-[#FDFCFB] text-slate-900 selection:bg-orange-100 font-sans">
+    // Smooth scroll handler
+    const handleScrollToApp = (e: React.MouseEvent) => {
+        e.preventDefault();
+        const element = document.getElementById('app-download-section');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
-      {/* --- UPDATED HEADER (PILL DESIGN) --- */}
-      <nav className="fixed top-0 left-0 right-0 z-100 transition-all duration-500 px-4 pt-4">
-        <div className={`mx-auto max-w-360 flex items-center justify-between gap-2 px-3 sm:px-6 py-3 sm:py-4 rounded-2xl sm:rounded-full transition-all duration-300 ${isScrolled
-          ? 'bg-white/95 backdrop-blur-xl shadow-xl border border-white/40'
-          : 'bg-white/80 backdrop-blur-xl shadow-lg border border-white/20'
-          }`}>
-          <div className="flex items-center min-w-0">
-            <Link href="/" className="flex items-center min-w-0">
-              <div className="h-10 sm:h-12 w-auto overflow-hidden shrink-0">
-                <Image
-                  src="/images/logo.png"
-                  alt="DODO food Delivery logo"
-                  width={220}
-                  height={72}
-                  className="h-full w-auto object-contain"
-                  priority
-                />
-              </div>
-            </Link>
-          </div>
+    return (
+        <div className="min-h-screen bg-white text-[#1B365D] selection:bg-red-500 selection:text-white font-sans antialiased">
 
-          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+            {/* --- CUSTOM ANIMATIONS --- */}
+            <style dangerouslySetInnerHTML={{
+                __html: `
+        @keyframes deliciousFloat {
+          0%, 100% { transform: translateY(0) rotate(-2deg); }
+          50% { transform: translateY(-15px) rotate(0deg); }
+        }
+        @keyframes deliciousFloatReverse {
+          0%, 100% { transform: translateY(0) rotate(2deg); }
+          50% { transform: translateY(-15px) rotate(0deg); }
+        }
+        @keyframes steam {
+          0% { transform: translateY(0) scale(1); opacity: 0; }
+          50% { transform: translateY(-20px) scale(1.2); opacity: 0.3; }
+          100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
+        }
+        .animate-food-float { animation: deliciousFloat 6s ease-in-out infinite; }
+        .animate-food-float-reverse { animation: deliciousFloatReverse 7s ease-in-out infinite; }
+        .steam-particle { animation: steam 3s infinite; }
+      `}} />
 
-            <Link href="/restaurant-partner" className="hidden sm:block text-sm font-bold text-slate-600 hover:text-orange-500 transition">
-              Join as a Partner
-            </Link>
-            <Link href="/login" className="hidden min-[420px]:block text-xs sm:text-sm font-bold text-slate-700 hover:text-orange-500 transition px-1 sm:px-2">
-              Login
-            </Link>
-            <button
-              onClick={scrollToDownload}
-              className="bg-slate-900 text-white px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-xl hover:bg-orange-600 hover:scale-105 transition active:scale-95 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap"
-            >
-              <Smartphone className="w-4 h-4" />
-              <span className="hidden min-[420px]:inline">Get the App</span>
-            </button>
-          </div>
+            {/* --- HEADER --- */}
+            <nav className="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-4 sm:px-6 pt-2 sm:pt-4">
+                <div className={`mx-auto max-w-7xl flex items-center justify-between px-3 sm:px-6 py-2 sm:py-3 rounded-full transition-all duration-300 ${isScrolled
+                    ? 'bg-white/95 backdrop-blur-xl shadow-xl border border-slate-200 py-3'
+                    : 'bg-white/80 backdrop-blur-xl shadow-lg border border-white/20 py-4'
+                    }`}>
+                    <Link href="/" className="flex items-center gap-2 sm:gap-3">
+                        <Image src="/images/logo.jpeg" alt="Quick Delivery Logo" width={70} height={70} className="rounded-full w-10 h-10 sm:w-12 sm:h-12" priority />
+                    </Link>
+
+                    <div className="flex items-center gap-2 sm:gap-4">
+                        <Link href="/login" className="block text-xs sm:text-sm font-bold text-[#1B365D] hover:text-[#E31837] transition-colors px-2">
+                            Login
+                        </Link>
+                        <button
+                            onClick={handleScrollToApp}
+                            className="bg-slate-900 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:bg-[#E31837] transition-all shadow-md active:scale-95 flex items-center gap-1 sm:gap-2"
+                        >
+                            <Smartphone className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span className="block">Get App</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <main className="mx-auto max-w-7xl lg:max-w-[1440px] relative">
+
+                {/* --- HERO SECTION --- */}
+                <section className="relative pt-20 sm:pt-32 pb-12 sm:pb-20 lg:pt-56 lg:pb-32 px-4 sm:px-6 lg:px-12 overflow-hidden text-left text-balance">
+                    <div className="hidden sm:block absolute top-0 right-0 w-[55%] h-full bg-slate-50 -z-10 rounded-bl-[10rem]" />
+
+                    <div className="relative z-10 grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+                        <div className="space-y-6 sm:space-y-8 lg:space-y-10">
+                            <div className="inline-flex items-center gap-2 bg-red-50 px-3 sm:px-4 py-2 rounded-full border border-red-100">
+                                <Flame className="w-3 h-3 sm:w-4 sm:h-4 text-[#E31837] fill-[#E31837] animate-pulse" />
+                                <span className="text-[10px] sm:text-xs font-bold text-[#E31837] uppercase tracking-wider">Premium Restaurant Experience</span>
+                            </div>
+
+                            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight sm:leading-none tracking-tight text-[#1B365D]">
+                                Taste local <br />
+                                <span className="text-[#E31837] italic">perfection.</span>
+                            </h1>
+
+                            <p className="max-w-md text-base sm:text-lg md:text-lg lg:text-xl text-slate-500 leading-relaxed font-medium">
+                                Gourmet meals delivered with absolute precision. Our innovative tech ensures your food stays at the perfect temperature.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-wrap gap-3 sm:gap-4 sm:flex-row pt-2 sm:pt-4">
+                                <Link target='_blank' href={storeUrl} className="bg-slate-900 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-4 hover:bg-[#E31837] transition-all shadow-xl shadow-slate-200 group">
+                                    <PlayStoreIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                                    <div className="text-left leading-none">
+                                        <p className="text-[10px] uppercase font-bold opacity-60 mb-0.5">Get it on</p>
+                                        <p className="text-base font-extrabold">Play Store</p>
+                                    </div>
+                                </Link>
+                                <Link target='_blank' href={storeUrl} className="bg-white border-2 border-slate-100 text-slate-900 px-8 py-4 rounded-2xl flex items-center justify-center gap-4 hover:border-[#E31837] hover:text-[#E31837] transition-all shadow-lg group">
+                                    <AppStoreIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                                    <div className="text-left leading-none">
+                                        <p className="text-[10px] uppercase font-bold opacity-60 mb-0.5">Download on</p>
+                                        <p className="text-base font-extrabold">App Store</p>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Innovative Food Visuals */}
+                        <div className="relative hidden lg:block">
+                            <div className="absolute top-20 left-20 z-20">
+                                <div className="steam-particle w-2 h-2 bg-white rounded-full blur-[2px]" style={{ animationDelay: '0s' }} />
+                                <div className="steam-particle w-1 h-1 bg-white rounded-full blur-[2px] ml-4 mt-2" style={{ animationDelay: '0.5s' }} />
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                                <div className="space-y-4 sm:space-y-6 pt-8 sm:pt-16">
+                                    <div className="animate-food-float bg-white p-3 rounded-[2.5rem] shadow-2xl border border-slate-100 relative group cursor-pointer">
+                                        <div className="overflow-hidden rounded-[2rem] relative aspect-[3/4]">
+                                            <Image
+                                                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=500"
+                                                alt="Artisan Pizza"
+                                                fill
+                                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                                            />
+                                        </div>
+                                        <div className="absolute top-6 right-6 bg-[#E31837] text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-lg">
+                                            HOT & FRESH
+                                        </div>
+                                        <div className="p-5 flex items-center justify-between">
+                                            <div className="space-y-1 text-left">
+                                                <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Trending</p>
+                                                <p className="text-xl font-bold text-[#1B365D]">Artisan Pizza</p>
+                                            </div>
+                                            <div className="h-10 w-10 bg-red-50 rounded-full flex items-center justify-center text-[#E31837]">
+                                                <Pizza className="w-5 h-5" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-6">
+                                    <div className="animate-food-float-reverse bg-white p-3 rounded-[2.5rem] shadow-2xl border border-slate-100 relative group cursor-pointer">
+                                        <div className="overflow-hidden rounded-[2rem] relative aspect-square">
+                                            <Image
+                                                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400"
+                                                alt="Healthy Bowls"
+                                                fill
+                                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                                            />
+                                        </div>
+                                        <div className="p-5 flex items-center justify-between">
+                                            <div className="space-y-1 text-left">
+                                                <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Organic</p>
+                                                <p className="text-xl font-bold text-[#1B365D]">Healthy Bowls</p>
+                                            </div>
+                                            <div className="h-10 w-10 bg-green-50 rounded-full flex items-center justify-center text-green-600">
+                                                <Utensils className="w-5 h-5" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-[#1B365D] p-8 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden group">
+                                        <Zap className="w-10 h-10 text-[#E31837] mb-4 fill-[#E31837] animate-pulse" />
+                                        <div className="text-left">
+                                            <p className="text-xl font-bold leading-tight">20 Min Delivery</p>
+                                            <p className="text-sm text-blue-200 mt-2 opacity-80">Canada&rsquo;s fastest network</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- EXPERIENCE INNOVATION --- */}
+                <section className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 bg-slate-50 relative overflow-hidden rounded-2xl sm:rounded-4xl mx-4 sm:mx-6">
+                    <div className="mx-auto max-w-7xl relative z-10">
+                        <div className="text-center mb-8 sm:mb-12 lg:mb-16 space-y-3 sm:space-y-4">
+                            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-[#1B365D]">The Delicious Standard.</h2>
+                            <p className="text-slate-500 max-w-2xl mx-auto font-medium text-sm sm:text-base lg:text-lg">We&rsquo;ve reimagined food delivery with innovative technology to ensure your meal arrives exactly as the chef intended.</p>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                            {[
+                                { icon: Timer, title: "Precision Speed", desc: "Our AI routing avoids traffic, ensuring a sub-20 minute arrival." },
+                                { icon: ShieldCheck, title: "Hygiene Priority", desc: "Temperature-controlled bags and contact-free handovers." },
+                                { icon: Utensils, title: "Chef Curated", desc: "Exclusive partnerships with the city's highest-rated kitchens." },
+                                { icon: MousePointer2, title: "One-Tap Order", desc: "Reorder your favorites in under 3 seconds with our app." }
+                            ].map((item, idx) => (
+                                <div key={idx} className="bg-white p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl lg:rounded-4xl border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+                                    <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-slate-50 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-red-50 transition-colors">
+                                        <item.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-[#1B365D] group-hover:text-[#E31837] transition-colors" />
+                                    </div>
+                                    <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">{item.title}</h3>
+                                    <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed">{item.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- REIMAGINED APP DOWNLOAD SECTION --- */}
+                <section id="app-download-section" className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-12 scroll-mt-24">
+                    <div className="mx-auto max-w-7xl bg-[#111827] rounded-2xl sm:rounded-3xl lg:rounded-[3.5rem] p-6 sm:p-10 lg:p-24 relative overflow-hidden text-white shadow-3xl text-left">
+                        {/* Background Glow Accents */}
+                        <div className="hidden sm:block absolute top-0 right-0 w-[600px] h-[600px] bg-[#E31837] rounded-full blur-[180px] opacity-[0.12] -mr-40 -mt-40" />
+                        <div className="hidden sm:block absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#1B365D] rounded-full blur-[140px] opacity-[0.15] -ml-20 -mb-20" />
+
+                        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center relative z-10">
+                            <div className="space-y-8 sm:space-y-10 lg:space-y-12">
+                                <div className="space-y-4 sm:space-y-6 text-center lg:text-left">
+                                    <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold leading-tight sm:leading-tight lg:leading-[1.05] tracking-tight">
+                                        Start eating <br />
+                                        <span className="text-white opacity-100">better </span>
+                                        <span className="text-[#E31837]">today.</span>
+                                    </h2>
+                                    <p className="text-base sm:text-lg lg:text-xl text-slate-400 max-w-md mx-auto lg:mx-0 font-medium leading-relaxed">
+                                        Download <span className="text-white font-bold">Quick Delivery</span> now and get free delivery on your first three gourmet orders.
+                                    </p>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-wrap justify-center sm:flex-row lg:justify-start gap-3 sm:gap-4 lg:gap-5">
+                                    <Link target='_blank'
+                                        href={storeUrl}
+                                        className="bg-white text-slate-900 px-10 py-4 lg:py-5 rounded-[1.25rem] font-bold hover:bg-[#E31837] hover:text-white transition-all shadow-2xl flex items-center gap-4 group active:scale-95"
+                                    >
+                                        <AppStoreIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                                        <div className="text-left leading-none">
+                                            <p className="text-[10px] uppercase font-black opacity-60 mb-0.5">Available on</p>
+                                            <p className="text-lg font-black tracking-tight">App Store</p>
+                                        </div>
+                                    </Link>
+                                    <Link target='_blank'
+                                        href={storeUrl}
+                                        className="bg-[#1f2937] border border-white/10 text-white px-10  py-4 lg:py-5 rounded-[1.25rem] font-bold hover:bg-white hover:text-slate-900 transition-all shadow-2xl flex items-center gap-4 group active:scale-95"
+                                    >
+                                        <PlayStoreIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                                        <div className="text-left leading-none">
+                                            <p className="text-[10px] uppercase font-black opacity-60 mb-0.5">Get it on</p>
+                                            <p className="text-lg font-black tracking-tight">Google Play</p>
+                                        </div>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/* Innovative Phone Showcase */}
+                            <div className="flex justify-center relative group mt-8 sm:mt-12 lg:mt-0">
+                                <div className="w-80 h-[620px] bg-slate-900 rounded-[3.5rem] border-[12px] border-slate-800 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden relative transition-transform duration-700 group-hover:rotate-2 group-hover:scale-105">
+                                    <div className="h-6 w-28 bg-slate-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-2xl z-20 shadow-inner" />
+
+                                    <div className="h-full w-full bg-slate-950 relative">
+                                        <Image
+                                            src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=400"
+                                            alt="In-app delivery tracking preview"
+                                            fill
+                                            className="w-full h-full object-cover opacity-50 blur-[1px]"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-8 flex flex-col justify-end gap-6">
+                                            <div className="bg-[#E31837] p-6 rounded-[2rem] shadow-2xl translate-y-[-20px] animate-food-float relative">
+                                                <div className="absolute -top-4 -right-4 bg-white p-3 rounded-2xl shadow-xl text-left">
+                                                    <ShoppingBag className="w-5 h-5 text-[#E31837] fill-[#E31837]" />
+                                                </div>
+                                                <div className="space-y-2 text-left">
+                                                    <p className="text-[10px] font-black uppercase text-white/70 tracking-widest">Active Tracking</p>
+                                                    <p className="text-white font-black text-2xl italic tracking-tighter leading-none">Arriving at 12:45</p>
+                                                </div>
+                                                <div className="mt-4 flex items-center gap-2">
+                                                    <div className="h-1.5 flex-1 bg-white/20 rounded-full overflow-hidden">
+                                                        <div className="h-full bg-white w-3/4 rounded-full" />
+                                                    </div>
+                                                    <Zap className="w-4 h-4 text-white fill-white animate-pulse" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="absolute -inset-10 bg-[#E31837]/20 rounded-full blur-[80px] -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            {/* --- FOOTER --- */}
+            <footer className="mt-12 sm:mt-16 lg:mt-24 relative overflow-hidden text-left">
+                <div className="absolute inset-0 bg-[#1B365D]" />
+                <div className="hidden sm:block absolute -bottom-20 -right-20 w-96 h-96 bg-[#E31837] rounded-full blur-[160px] opacity-20" />
+
+                <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-12">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8 sm:gap-10 lg:gap-12 border-b border-white/10 pb-8 sm:pb-12 lg:pb-16">
+
+                        <div className="space-y-4 sm:space-y-6 text-center md:text-left">
+                            <Link href="/" className="flex items-center justify-center md:justify-start gap-3 sm:gap-4">
+                                <Image src="/images/logo.jpeg" alt="Quick Delivery Logo" width={80} height={80} className="rounded-full w-14 h-14 sm:w-20 sm:h-20" priority />
+                            </Link>
+                            <p className="text-blue-100/60 font-medium text-xs sm:text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
+                                Canada&apos;s premier food delivery platform. Move your world with speed, precision, and taste.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col items-center gap-6 sm:gap-8">
+                            <Link
+                                href="/contact"
+                                className="group flex items-center gap-3 text-white font-bold text-base sm:text-lg hover:text-[#E31837] transition-all"
+                            >
+                                <div className="w-9 h-9 sm:w-10 sm:h-10 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-[#E31837] transition-colors">
+                                    <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+                                </div>
+                                Contact Us
+                            </Link>
+
+                            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+                                <Link target='_blank'
+                                    href={storeUrl}
+                                    className="bg-white text-[#1B365D] px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3 font-bold hover:bg-[#E31837] hover:text-white transition-all shadow-xl text-xs sm:text-sm"
+                                >
+                                    <PlayStoreIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                                    <span className="uppercase tracking-widest">Play Store</span>
+                                </Link>
+                                <a
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    href={storeUrl}
+                                    className="bg-[#111827] border border-white/20 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3 font-bold hover:bg-white hover:text-[#1B365D] transition-all text-xs sm:text-sm"
+                                >
+                                    <AppStoreIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                                    <span className="uppercase tracking-widest">App Store</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-6 sm:mt-8 lg:mt-12 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 text-center sm:text-left">
+                        <div className="flex items-center gap-4 text-xs font-bold text-blue-100/40 uppercase tracking-[0.2em]">
+                            <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
+                        </div>
+                        <div className="text-blue-100/30 font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em]">
+                            © 2026 QUICK DELIVERY LOGISTICS INC.
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-      </nav>
-
-      <main className="mx-auto max-w-[1440px] relative">
-        {/* --- HERO SECTION --- */}
-        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden px-6 lg:px-12">
-          <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-orange-100 rounded-full blur-[120px] opacity-60 -mr-20 -mt-20 animate-pulse" />
-
-          <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-100 px-4 py-2 rounded-full">
-                <Zap className="w-4 h-4 text-orange-500 fill-orange-500" />
-                <span className="text-[10px] md:text-xs font-black uppercase tracking-wider text-orange-700">Experience our new app</span>
-              </div>
-
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-[900] leading-[0.95] tracking-tight text-slate-900">
-                Great Food <br />
-                <span className="text-orange-500 relative inline-block">
-                  In Your Pocket
-                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-orange-200" viewBox="0 0 100 10" preserveAspectRatio="none">
-                    <path d="M0 5 Q 25 0 50 5 Q 75 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-                  </svg>
-                </span>
-              </h1>
-
-              <p className="max-w-md text-base md:text-lg text-slate-500 leading-relaxed font-medium">
-                Dodo Food is now exclusively available on mobile. Experience real-time tracking, zero delivery fees, and the easiest way to order.
-              </p>
-
-              {/* Download Buttons */}
-              <div className="flex flex-wrap gap-4 pt-4">
-                <Link
-                  href="http://apple.com/app-store/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 bg-slate-900 text-white px-8 py-4 rounded-[1.25rem] hover:scale-105 transition-all shadow-xl shadow-slate-200 group"
-                >
-                  <AppStoreIcon />
-                  <div className="text-left leading-none">
-                    <p className="text-[10px] opacity-60 font-bold uppercase tracking-wider">Download on the</p>
-                    <p className="text-lg font-black tracking-tight">App Store</p>
-                  </div>
-                </Link>
-                <Link
-                  href="https://play.google.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-[1.25rem] hover:scale-105 transition-all shadow-lg group"
-                >
-                  <PlayStoreIcon />
-                  <div className="text-left leading-none">
-                    <p className="text-[10px] opacity-60 font-bold uppercase tracking-wider">Get it on</p>
-                    <p className="text-lg font-black tracking-tight">Google Play</p>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="flex items-center gap-8 pt-4">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map(i => (
-                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-slate-200 relative">
-                      <img
-                        src={`https://i.pravatar.cc/150?img=${i + 10}`}
-                        alt="User Avatar"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="text-sm">
-                  <div className="flex items-center gap-1 text-slate-900">
-                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                    <span className="font-black">4.9/5 Rating</span>
-                  </div>
-                  <p className="text-slate-500 font-medium">Join 50k+ app users</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Visual Hero Image Grid */}
-            <div className="relative hidden lg:block">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4 pt-12">
-                  <div className="rounded-3xl overflow-hidden shadow-2xl rotate-[-2deg] border-4 border-white transition-transform hover:rotate-0 duration-500 relative aspect-square">
-                    <img
-                      src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=400"
-                      alt="Burger Promo"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-50 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">
-                      <Download className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Mobile First</p>
-                      <p className="text-lg font-black text-slate-900">Best UX</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div className="bg-slate-900 p-6 rounded-3xl shadow-xl text-white">
-                    <Zap className="w-8 h-8 text-orange-400 mb-4" />
-                    <p className="font-bold text-lg leading-tight mb-1">Tap, Track, Eat.</p>
-                    <p className="text-sm text-slate-400">Order in under 60 seconds.</p>
-                  </div>
-                  <div className="rounded-3xl overflow-hidden shadow-2xl rotate-[2deg] border-4 border-white transition-transform hover:rotate-0 duration-500 relative aspect-square">
-                    <img
-                      src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400"
-                      alt="Salad Promo"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- APP FEATURES SECTION --- */}
-        <section className="py-24 px-6 lg:px-12 bg-white/50">
-          <div className="mb-12 text-center md:text-left">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">
-              Why the <span className="text-orange-500">Dodo App?</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-2 relative overflow-hidden rounded-[2.5rem] bg-orange-500 p-10 md:p-14 text-white group">
-              <Zap className="w-12 h-12 mb-6 text-orange-200" />
-              <h3 className="text-3xl md:text-4xl font-black mb-4">Lightning-Fast Experience</h3>
-              <p className="text-orange-50 text-lg font-medium leading-relaxed max-w-lg">
-                Native app performance means zero lag. Browse thousands of restaurants smoothly.
-              </p>
-            </div>
-
-            <div className="bg-slate-900 rounded-[2.5rem] p-10 text-white flex flex-col justify-between">
-              <Smartphone className="w-10 h-10 text-orange-500 mb-6" />
-              <div>
-                <h3 className="text-2xl font-black mb-3">Live Tracking</h3>
-                <p className="text-slate-400 font-medium">Watch your food journey on a high-precision map.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- DOWNLOAD CTA SECTION --- */}
-        <section id="download-section" className="<Link py-24 px-6 scroll-mt-24">
-          <div className="bg-slate-900 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden">
-            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-orange-500 rounded-full blur-[120px] opacity-20" />
-
-            <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8 text-center lg:text-left">
-                <h2 className="text-5xl md:text-6xl font-black text-white leading-tight">
-                  Start eating <br /> better today.
-                </h2>
-                <p className="text-slate-400 text-lg font-medium leading-relaxed max-w-sm mx-auto lg:mx-0">
-                  Download Dodo Food now and get free delivery on your first three orders.
-                </p>
-                <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                  <Link
-                    href="http://apple.com/app-store/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white text-slate-900 px-8 py-4 rounded-2xl font-black hover:bg-orange-500 hover:text-white transition shadow-xl flex items-center gap-3"
-                  >
-                    <AppStoreIcon /> App Store
-                  </Link>
-                  <Link
-                    href="https://play.google.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-2xl font-black hover:bg-white/20 transition flex items-center gap-3"
-                  >
-                    <PlayStoreIcon /> Google Play
-                  </Link>
-                </div>
-              </div>
-
-              <div className="flex justify-center relative">
-                {/* Mobile Mockup */}
-                <div className="w-64 h-[500px] bg-slate-800 rounded-[3.5rem] border-[10px] border-slate-700 shadow-2xl relative overflow-hidden group">
-                  <div className="h-6 w-1/3 bg-slate-700 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-20" />
-                  <div className="p-6 pt-16 space-y-6">
-                    <div className="h-40 w-full bg-orange-500 rounded-2xl animate-pulse" />
-                    <div className="h-4 w-3/4 bg-slate-700 rounded" />
-                    <div className="h-4 w-1/2 bg-slate-700 rounded" />
-                  </div>
-                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-orange-500 p-4 rounded-full shadow-2xl shadow-orange-500/50">
-                    <ShoppingBag className="w-6 h-6 text-white" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* --- FOOTER --- */}
-      <footer className="px-6 lg:px-12 pt-16 pb-10">
-        <div className="mx-auto max-w-[1440px]">
-          <div className="relative overflow-hidden rounded-[2rem] bg-slate-900 text-slate-100 p-8 md:p-10 shadow-2xl">
-            <div className="absolute -top-24 -right-16 h-56 w-56 rounded-full bg-orange-500/20 blur-3xl" />
-            <div className="absolute -bottom-28 -left-14 h-56 w-56 rounded-full bg-amber-300/10 blur-3xl" />
-
-            <div className="relative z-10 grid gap-10 lg:grid-cols-12">
-              <div className="lg:col-span-5 space-y-5">
-                <div className="h-12 sm:h-14 w-auto overflow-hidden">
-                  <Image
-                    src="/images/logo.png"
-                    alt="DODO food Delivery logo"
-                    width={260}
-                    height={84}
-                    className="h-full w-auto object-contain"
-                  />
-                </div>
-                <p className="text-sm sm:text-base text-slate-300 max-w-md leading-relaxed">
-                  Fast delivery, trusted restaurants, and real-time tracking built for people who love great food without the wait.
-                </p>
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white/90">
-                    <Star className="w-3.5 h-3.5 text-yellow-300 fill-yellow-300" />
-                    4.9 Average Rating
-                  </span>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white/90">
-                    <Zap className="w-3.5 h-3.5 text-orange-300" />
-                    Delivery in minutes
-                  </span>
-                </div>
-              </div>
-
-              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
-                <div className="space-y-4">
-                  <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Company</p>
-                  <div className="space-y-3 text-sm font-semibold">
-
-                    <Link href="/login" className="block text-slate-200 hover:text-orange-300 transition">Login</Link>
-
-                    <Link href="/restaurant-partner" className="block text-slate-200 hover:text-orange-300 transition">Become a Partner</Link>
-
-                    <Link href="/about" className="block text-slate-200 hover:text-orange-300 transition">About Us</Link>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Support</p>
-                  <div className="space-y-3 text-sm font-semibold">
-                    <Link href="/contact" className="flex items-center gap-2 text-slate-200 hover:text-orange-300 transition">
-                      <Headphones className="w-4 h-4" />
-                      Help Center
-                    </Link>
-                    <Link href="/about" className="flex items-center gap-2 text-slate-200 hover:text-orange-300 transition">
-                      <ShieldCheck className="w-4 h-4" />
-                      Privacy Policy
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Get the App</p>
-                  <div className="space-y-3">
-                    <Link
-                      href="http://apple.com/app-store/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex w-full items-center justify-center rounded-xl bg-white text-slate-900 px-4 py-2.5 text-sm font-black hover:bg-orange-400 hover:text-white transition"
-                    >
-                      App Store
-                    </Link>
-                    <Link
-                      href="https://play.google.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex w-full items-center justify-center rounded-xl bg-white/10 border border-white/20 text-white px-4 py-2.5 text-sm font-black hover:bg-white/20 transition"
-                    >
-                      Google Play
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative z-10 mt-10 border-t border-white/10 pt-5 flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center justify-between text-xs sm:text-sm text-slate-400">
-              <p>© 2026 DODO food Delivery. All rights reserved.</p>
-              <p className="font-semibold text-slate-300">Built for mobile-first food ordering.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
+    );
 }
